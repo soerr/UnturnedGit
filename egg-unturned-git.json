@@ -4,13 +4,13 @@
     "version": "PTDL_v2",
     "update_url": null
   },
-  "exported_at": "2024-05-30T00:11:33+01:00",
+  "exported_at": "2026-01-06T03:13:08+01:00",
   "name": "Unturned Git",
   "author": "contact@restoremonarchy.com",
   "description": "Unturned dedicated server with GitHub repository sync.",
   "features": null,
   "docker_images": {
-    "ghcr.io/soerr/unturnedgit:latest": "ghcr.io/soerr/unturnedgit:latest"
+    "ghcr.io\/soerr\/unturnedgit:latest": "ghcr.io\/soerr\/unturnedgit:latest"
   },
   "file_denylist": [],
   "startup": ".\/Unturned_Headless.x86_64 -batchmode -nographics -LogSteamNetworkingSockets=0 -ThreadedConsole {{CPU_PRIORITY}} -port {{SERVER_PORT}} -gslt {{LOGIN_TOKEN}} +secureserver\/unturned",
@@ -92,7 +92,7 @@
       "name": "Repository URL",
       "description": "The URL to the Git repository that should be cloned for this server.",
       "env_variable": "REPOSITORY_URL",
-      "default_value": "github.com/RestoreMonarchyPlugins/UnturnedGit.git",
+      "default_value": "github.com\/RestoreMonarchyPlugins\/UnturnedGit.git",
       "user_viewable": true,
       "user_editable": true,
       "rules": "nullable|string|max:255",
@@ -103,10 +103,10 @@
       "description": "The access token to use when cloning the repository. This is required for private repositories.",
       "env_variable": "REPOSITORY_ACCESS_TOKEN",
       "default_value": "",
-      "user_viewable": true,
+      "user_viewable": false,
       "user_editable": true,
       "rules": "nullable|string|max:255",
-      "field_type": "password"
+      "field_type": "text"
     },
     {
       "name": "Branch",
@@ -132,7 +132,7 @@
       "name": "Install Directory",
       "description": "The directory where the server files should be installed.",
       "env_variable": "INSTALL_DIR",
-      "default_value": "Servers/unturned",
+      "default_value": "Servers\/unturned",
       "user_viewable": true,
       "user_editable": false,
       "rules": "required|string|max:255",
