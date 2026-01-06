@@ -48,14 +48,14 @@ if [ "${FRAMEWORK}" == "rocketmodfix" ] || [ "${FRAMEWORK}" == "openmod & rocket
          unzip -o -q Rocket.Unturned.Module*.zip -d Modules && rm Rocket.Unturned.Module*.zip
          rm "Modules/Readme_EN.txt"
          rm "Modules/Readme_RU.txt"
-    fi    
+    fi
 fi
 
 if [ "${FRAMEWORK}" == "openmod" ] || [ "${FRAMEWORK}" == "openmod & rocket" ] || [ "${FRAMEWORK}" == "openmod & rocketmodfix" ]; then
     if [ "${FRAMEWORK_AUTOUPDATE}" == "1" ] || [ ! -d "Modules/OpenMod.Unturned" ]; then
         curl -s https://api.github.com/repos/openmod/OpenMod/releases/latest | jq -r '.assets[] | select(.name | contains("OpenMod.Unturned.Module")) | .browser_download_url' | wget -i -
         unzip -o -q OpenMod.Unturned.Module*.zip -d Modules && rm OpenMod.Unturned.Module*.zip
-    fi    
+    fi
 fi
 
 mkdir -p .steam/sdk64
@@ -76,4 +76,4 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/Unturned_Headless_Data/Plugins/x86
 MODIFIED_STARTUP=$(eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g'))
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-${MODIFIED_STARTUP}
+exec ${MODIFIED_STARTUP}

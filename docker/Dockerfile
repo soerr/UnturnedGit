@@ -1,20 +1,19 @@
-FROM ubuntu:18.04
+FROM debian:trixie-slim
 
-LABEL RestoreMonarchy, <admin@restoremonarchy.com>
+LABEL author="RestoreMonarchy" maintainer="admin@restoremonarchy.com"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y curl unzip wget jq lib32gcc1 lib32stdc++6 libc6 libgl1-mesa-glx libxcursor1 libxrandr2 libc6-dev libgcc-4.8-dev && \
-    useradd -d /home/container -m container
-
-# Install git for cloning
-RUN apt install -y git
+RUN apt update \
+    && apt upgrade -y \
+    && apt install -y curl wget jq unzip git libc6 libc6-dev lib32gcc-s1 lib32stdc++6 \
+    && useradd -d /home/container -m container \
+    && ln -sf /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so \
+    && ln -sf /usr/lib/x86_64-linux-gnu/libdl.so.2 /lib/libdl.so
 
 USER container
-ENV  USER container
-ENV  HOME /home/container
+ENV USER=container
+ENV HOME=/home/container
 
 WORKDIR /home/container
 
